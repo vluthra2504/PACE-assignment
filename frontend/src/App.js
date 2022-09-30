@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './App.css'
-import Table from 'react-bootstrap/Table';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 const App = () => {
   const [posts, setPosts] = useState([])
   const getPosts = async () => {
     try {
-      const userPosts = await axios.get("http://localhost:5000/api/v1/data")
+      const userPosts = await axios.get("http://localhost:5004/api/v1/data")
 
       setPosts(userPosts.data);  // set State
 
@@ -29,32 +35,32 @@ const App = () => {
   return (
     // <div>
     //   <h1>useEffect</h1>
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Price</th>
-          <th>1h%</th>
-          <th>24h%</th>
-          <th>7d%</th>
-          <th>Market Cap</th>
-          <th>Volume(24h)</th>
-          <th>Circulating Supply</th>
-        </tr>
-      </thead>
+    <Table striped bordered hover variant="dark">
+      <TableHead>
+        <TableRow>
+          <TableCell >Name</TableCell >
+          <TableCell >Price</TableCell >
+          <TableCell >1h%</TableCell >
+          <TableCell >24h%</TableCell >
+          <TableCell >7d%</TableCell >
+          <TableCell >Market Cap</TableCell >
+          <TableCell >Volume(24h)</TableCell >
+          <TableCell >Circulating Supply</TableCell >
+        </TableRow>
+      </TableHead>
       <tbody>
 
         {posts.map(post => (
-          <tr>
-            <td>{post[0]}</td>
-            <td>{post[1]}</td>
-            <td>{post[2]}</td>
-            <td>{post[3]}</td>
-            <td>{post[4]}</td>
-            <td>{post[5]}</td>
-            <td>{post[6]}</td>
-            <td>{post[7]}</td>
-          </tr>
+          <TableRow>
+            <TableCell >{post[0]}</TableCell >
+            <TableCell >{post[1]}</TableCell >
+            <TableCell >{post[2]}</TableCell >
+            <TableCell >{post[3]}</TableCell >
+            <TableCell >{post[4]}</TableCell >
+            <TableCell >{post[5]}</TableCell >
+            <TableCell >{post[6]}</TableCell >
+            <TableCell >{post[7]}</TableCell >
+          </TableRow>
         ))}
       </tbody>
     </Table>
